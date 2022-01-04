@@ -1,15 +1,16 @@
 import { FunctionComponent } from "react";
-import { iForecast } from "../Models/Models";
+import { ICurrent, IForecast } from "../Models/Models";
 
 interface ForecastProps {
-  forecast: iForecast;
+  forecast: ICurrent;
 }
 
 const Forecast: FunctionComponent<ForecastProps> = ({ forecast }) => {
   return (
     <div className='forecast'>
       <h3>{forecast.location?.name}</h3>
-      <h4>{`${forecast.temp_c} °C`}</h4>
+      <p>Hora Local: {forecast.location?.localtime}</p>
+      <p>{`${forecast.temp_c} °C`}</p>
     </div>
   );
 };

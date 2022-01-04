@@ -1,5 +1,5 @@
 import { FunctionComponent, useEffect, useState } from "react";
-import { iForecast } from "../Models/Models";
+import { ICurrent, IForecast } from "../Models/Models";
 import { useFetch } from "../Services/useFetch";
 // import { useFetch } from "../Services/useFetch";
 import Forecast from "./Forecast";
@@ -10,7 +10,7 @@ interface HomeProps {}
 const Home: FunctionComponent<HomeProps> = () => {
   const [q, setQ] = useState("havana");
   const [d, setD] = useState(3);
-  const forecast = useFetch(q, d);
+  const forecast = useFetch<ICurrent>(q, d);
 
   const handleQChange = (newQ: string) => {
     setQ(newQ);
