@@ -1,12 +1,5 @@
 import { FunctionComponent, SyntheticEvent, useState } from "react";
-import {
-  Button,
-  Form,
-  FormControl,
-  InputGroup,
-  Spinner,
-} from "react-bootstrap";
-import { ICurrent, IForecast } from "../Models/Models";
+import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
 
 interface FormProps {
   onSubmit: Function;
@@ -34,13 +27,6 @@ const Formulario: FunctionComponent<FormProps> = ({ onSubmit: changeQ }) => {
             }}
           />
           <Button variant='outline-secondary' id='button-ver' type='submit'>
-            <Spinner
-              as='span'
-              animation='grow'
-              size='sm'
-              role='status'
-              aria-hidden='true'
-            />
             Ver
           </Button>
         </InputGroup>

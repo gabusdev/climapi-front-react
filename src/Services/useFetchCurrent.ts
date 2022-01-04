@@ -1,9 +1,12 @@
+import { useEffect } from "react";
 import { ICurrent } from "../Models/Models";
 import { useFetch } from "./useFetch";
 
-const useFetchCurrent = (q: string, d: number) => {
+export const useFetchCurrent = (q: string, d: number) => {
   const response = useFetch<ICurrent>(q, d);
-  return { response, status: 1 };
-};
+  // isFetching(false);
+  // f();
+  console.log("Date:" + Date.now().toString());
 
-export default useFetchCurrent;
+  return response;
+};

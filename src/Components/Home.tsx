@@ -1,7 +1,8 @@
 import { FunctionComponent, useEffect, useState } from "react";
-import { Button, Col, Container, Row, Stack, Form } from "react-bootstrap";
+import { Col, Container, Row, Stack } from "react-bootstrap";
 import { ICurrent, IForecast } from "../Models/Models";
 import { useFetch } from "../Services/useFetch";
+import { useFetchCurrent } from "../Services/useFetchCurrent";
 import Forecast from "./Forecast";
 import Formulario from "./Formulario";
 
@@ -10,15 +11,17 @@ interface HomeProps {}
 const Home: FunctionComponent<HomeProps> = () => {
   const [q, setQ] = useState("havana");
   const [d, setD] = useState(3);
-  const forecast = useFetch<ICurrent>(q, d);
+  // const [fetching, setFetching] = useState(false);
+  const { forecast, isPending: isFetching } = useFetch<ICurrent>(q, d);
 
   const handleQChange = (newQ: string) => {
+    // setFetching(true);
     setQ(newQ);
   };
 
   // useEffect(() => {
-  //   console.log(q);
-  // }, [q]);
+  //   setFetching(false);
+  // }, [forecast]);
 
   return (
     <>
@@ -29,7 +32,9 @@ const Home: FunctionComponent<HomeProps> = () => {
             <Col xs='12' sm='8' md='6' className='text-center'>
               <Stack gap={3}>
                 <Formulario onSubmit={handleQChange} />
-                {forecast && <Forecast forecast={forecast} />}
+                {forecast && (
+                  <Forecast forecast={forecast} fetching={isFetching} />
+                )}
               </Stack>
             </Col>
             <Col></Col>
