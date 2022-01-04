@@ -8,7 +8,10 @@ interface ForecastProps {
 const Forecast: FunctionComponent<ForecastProps> = ({ forecast }) => {
   return (
     <div className='forecast'>
-      <h3>{forecast.location?.name}</h3>
+      <h3>
+        {forecast.location?.name},{forecast.location.country},
+        {forecast.location.region}
+      </h3>
       <p>Hora Local: {forecast.location?.localtime}</p>
       <p>{`${forecast.temp_c} °C`}</p>
     </div>
