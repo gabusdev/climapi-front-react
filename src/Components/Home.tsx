@@ -1,39 +1,29 @@
-import { FunctionComponent, useState } from "react";
-import { Forecast } from "../Models/Models";
+import { FunctionComponent, useEffect, useState } from "react";
+import { iForecast } from "../Models/Models";
 import { useFetch } from "../Services/useFetch";
+// import { useFetch } from "../Services/useFetch";
+import Forecast from "./Forecast";
+import Form from "./Form";
 
 interface HomeProps {}
 
 const Home: FunctionComponent<HomeProps> = () => {
-  const [q, setQ] = useState("Havana");
-  const [q2, setQ2] = useState("");
+  const [q, setQ] = useState("havana");
   const [d, setD] = useState(3);
-  const forcast = useFetch(q, d);
+  const forecast = useFetch(q, d);
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    setQ(q2);
+  const handleQChange = (newQ: string) => {
+    setQ(newQ);
   };
+
+  // useEffect(() => {
+  //   console.log(q);
+  // }, [q]);
 
   return (
     <div className='home'>
-      <h1>Hello World</h1>
-      <form onSubmit={handleSubmit}>
-        <label>City:</label>
-        <input
-          type='text'
-          placeholder='City or zip code'
-          required
-          value={q2}
-          onChange={(e) => {
-            setQ2(e.target.value);
-            console.log(e);
-          }}
-        />
-        <button>Ver</button>
-      </form>
-      <h3>{forcast?.location?.name}</h3>
-      <h4>{forcast?.temp_c}</h4>
+      <Form onSubmit={handleQChange} />
+      {forecast && <Forecast forecast={forecast} />}
     </div>
   );
 };

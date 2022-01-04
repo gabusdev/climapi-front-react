@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Forecast } from "../Models/Models";
+import { iForecast } from "../Models/Models";
 
 export const useFetch = (q: string, d: number = 3) => {
-  const [forecast, setForecast] = useState<Forecast>();
+  const [forecast, setForecast] = useState<iForecast>();
 
   useEffect(() => {
     fetch(`https://localhost:6060/api/v1/Weather/${q}/forecast/${d}`)
