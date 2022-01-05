@@ -16,7 +16,7 @@ const Formulario: FunctionComponent<FormProps> = ({ onSubmit: changeQ }) => {
   return (
     <div className='form'>
       <Form onSubmit={handleSubmit}>
-        <InputGroup className='mb-3' hasValidation>
+        <InputGroup className='mb-3 px-6 pt-2' hasValidation>
           <FormControl
             placeholder='País o código postal...'
             aria-label='Región'
